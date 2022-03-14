@@ -1,11 +1,11 @@
-#Selenium UI Java automation Project
+# Selenium UI Java automation Project
 
 This is a UI automation project implemented with:
 * Java
 * Selenium
 * Allure reporting for html reporting
 
-[Project location](https://github.com/avrumchic/SeleniumJavaAutomation)
+[Project location in github](https://github.com/avrumchic/SeleniumJavaAutomation)
 
 To execute the tests please make sure the following:
 
