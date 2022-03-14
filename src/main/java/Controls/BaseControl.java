@@ -1,5 +1,7 @@
 package Controls;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
@@ -8,11 +10,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BaseControl {
-    Logger logger = Logger.getLogger(BaseControl.class.getName());
+    Logger logger = LogManager.getLogger(BaseControl.class);
 
     private final int TimeOutIsSeconds = 10;
     protected WebDriver driver;
@@ -46,7 +46,7 @@ public class BaseControl {
     }
 
     public WebElement click() {
-        logger.log(Level.INFO, "Clicking element");
+        logger.info("Clicking element");
         try {
             element.click();
         } catch (ElementNotInteractableException e) {

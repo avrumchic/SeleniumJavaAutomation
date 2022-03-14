@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Practice Suite">
-    <test name="Test Basics 1">
-        <parameter name="emailid" value="alexey.kagansky+avi@cloudinary.com"/>
-        <parameter name="password" value="@Wsxcde3"/>
+<suite name="Upload Image Suite">
+    <test name="Test Image Upload and public id">
         <classes>
-            <class name="BaseTest"/>
+            <class name="UploadImageTest"/>
         </classes>
     </test> <!-- Test -->
-
-
 </suite> <!-- Suite -->

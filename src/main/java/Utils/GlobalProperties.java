@@ -3,10 +3,11 @@ package Utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GlobalProperties {
-    Logger logger = Logger.getLogger(GlobalProperties.class.getName());
+    Logger logger = LogManager.getLogger(GlobalProperties.class);
 
     private static String propertiesFile = "automation.properties";
     private Properties properties = new Properties();

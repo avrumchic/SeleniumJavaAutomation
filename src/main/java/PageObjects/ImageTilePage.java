@@ -1,18 +1,18 @@
 package PageObjects;
 
 import Controls.TextBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 
 public class ImageTilePage extends BasePage {
-    Logger logger = Logger.getLogger(ImageTilePage.class.getName());
+    Logger logger = LogManager.getLogger(ImageTilePage.class);
 
     public enum ImageTileRightClickOptions {
         MANAGE("[data-test=\"action-manage-btn\"]"),
@@ -50,7 +50,7 @@ public class ImageTilePage extends BasePage {
                     .collect(Collectors.toList())
                     .get(0);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Failed locating Image Tile Element with Name: " + name);
+            logger.error("Failed locating Image Tile Element with Name: " + name);
         }
     }
 
@@ -61,7 +61,7 @@ public class ImageTilePage extends BasePage {
         try {
             element = driver.findElement(By.cssSelector(String.format(ImageTileByIndexCss, index)));
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Failed locating Image Tile Element with index: " + index);
+            logger.info("Failed locating Image Tile Element with index: " + index);
         }
     }
 

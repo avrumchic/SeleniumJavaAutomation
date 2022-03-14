@@ -4,7 +4,6 @@ import Controls.Button;
 import PageObjects.UploadImagePages.UploadWindowPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MediaLibraryPage extends BasePage {
 
@@ -16,7 +15,9 @@ public class MediaLibraryPage extends BasePage {
 
     public MediaLibraryPage(WebDriver driver) {
         super(driver);
+        //Need to wait for the images to load successfully, so waiting for the first image to load
         imageTilePage = new ImageTilePage(driver, 0);
+
         uploadButton = new Button(driver, By.cssSelector(uploadButtonCss));
     }
 

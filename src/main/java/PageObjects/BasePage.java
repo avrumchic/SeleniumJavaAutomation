@@ -3,21 +3,18 @@ package PageObjects;
 import Utils.GlobalProperties;
 import Utils.JSWaiter;
 import Utils.WebDriverBase;
-import io.netty.util.internal.StringUtil;
-import org.openqa.selenium.By;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Properties;
-import java.util.logging.Logger;
 
 //Base page for all common functionality of all PageObjects
 public class BasePage {
 
-    Logger logger = Logger.getLogger(BasePage.class.getName());
+    Logger logger = LogManager.getLogger(BasePage.class);
 
     private final int TimeOutIsSeconds = 10;
 

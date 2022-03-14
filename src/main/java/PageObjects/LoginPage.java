@@ -5,7 +5,7 @@ import Controls.TextBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     private final String pageRoot = ".login-block";
     private final String emailCss = "#user_session_email";

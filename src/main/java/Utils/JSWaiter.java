@@ -1,21 +1,21 @@
 package Utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.logging.Logger;
-
 public class JSWaiter {
-    private static Logger logger = Logger.getLogger(JSWaiter.class.getName());
+    private static Logger logger = LogManager.getLogger(JSWaiter.class);
 
     private static WebDriver jsWaitDriver;
     private static WebDriverWait jsWait;
     private static JavascriptExecutor jsExec;
 
     //Get the driver
-    public static void setDriver (WebDriver driver) {
+    public static void setDriver(WebDriver driver) {
         jsWaitDriver = driver;
         jsWait = new WebDriverWait(jsWaitDriver, 10);
         jsExec = (JavascriptExecutor) jsWaitDriver;
@@ -31,7 +31,7 @@ public class JSWaiter {
         boolean jqueryReady = (Boolean) jsExec.executeScript("return jQuery.active==0");
 
         //Wait JQuery until it is Ready!
-        if(!jqueryReady) {
+        if (!jqueryReady) {
             logger.info("JQuery is NOT Ready!");
             //Wait for jQuery to load
             jsWait.until(jQueryLoad);
@@ -43,7 +43,7 @@ public class JSWaiter {
 
     //Wait for Angular Load
     public static void waitForAngularLoad() {
-        WebDriverWait wait = new WebDriverWait(jsWaitDriver,15);
+        WebDriverWait wait = new WebDriverWait(jsWaitDriver, 15);
         JavascriptExecutor jsExec = (JavascriptExecutor) jsWaitDriver;
 
         String angularReadyScript = "return angular.element(document).injector().get('$http').pendingRequests.length === 0";
@@ -56,7 +56,7 @@ public class JSWaiter {
         boolean angularReady = Boolean.valueOf(jsExec.executeScript(angularReadyScript).toString());
 
         //Wait ANGULAR until it is Ready!
-        if(!angularReady) {
+        if (!angularReady) {
             logger.info("ANGULAR is NOT Ready!");
             //Wait for Angular to load
             wait.until(angularLoad);
@@ -67,7 +67,7 @@ public class JSWaiter {
 
     //Wait Until JS Ready
     public static void waitUntilJSReady() {
-        WebDriverWait wait = new WebDriverWait(jsWaitDriver,15);
+        WebDriverWait wait = new WebDriverWait(jsWaitDriver, 15);
         JavascriptExecutor jsExec = (JavascriptExecutor) jsWaitDriver;
 
         //Wait for Javascript to load
@@ -75,10 +75,10 @@ public class JSWaiter {
                 .executeScript("return document.readyState").toString().equals("complete");
 
         //Get JS is Ready
-        boolean jsReady =  (Boolean) jsExec.executeScript("return document.readyState").toString().equals("complete");
+        boolean jsReady = (Boolean) jsExec.executeScript("return document.readyState").toString().equals("complete");
 
         //Wait Javascript until it is Ready!
-        if(!jsReady) {
+        if (!jsReady) {
             logger.info("JS in NOT Ready!");
             //Wait for Javascript to load
             wait.until(jsLoad);
@@ -105,7 +105,7 @@ public class JSWaiter {
 
             //Post Wait for stability (Optional)
             sleep(20);
-        }  else {
+        } else {
             logger.info("jQuery is not defined on this site!");
         }
     }
@@ -118,7 +118,7 @@ public class JSWaiter {
         Boolean angularUnDefined = (Boolean) jsExec.executeScript("return window.angular === undefined");
         if (!angularUnDefined) {
             Boolean angularInjectorUnDefined = (Boolean) jsExec.executeScript("return angular.element(document).injector() === undefined");
-            if(!angularInjectorUnDefined) {
+            if (!angularInjectorUnDefined) {
                 //Pre Wait for stability (Optional)
                 sleep(20);
 
@@ -133,7 +133,7 @@ public class JSWaiter {
             } else {
                 logger.info("Angular injector is not defined on this site!");
             }
-        }  else {
+        } else {
             logger.info("Angular is not defined on this site!");
         }
     }
@@ -144,7 +144,7 @@ public class JSWaiter {
         waitUntilAngularReady();
     }
 
-    public static void sleep (Integer seconds) {
+    public static void sleep(Integer seconds) {
         long secondsLong = (long) seconds;
         try {
             Thread.sleep(secondsLong);
