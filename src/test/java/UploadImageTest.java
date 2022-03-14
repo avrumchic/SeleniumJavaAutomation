@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-@Listeners ({TestListenerAdapter.class})
+@Listeners({TestListenerAdapter.class})
 @Epic("Regression Tests")
 @Feature("Upload Image Test")
 public class UploadImageTest extends BaseTest {
@@ -49,11 +49,11 @@ public class UploadImageTest extends BaseTest {
         Allure.step("Upload any image from web search");
         mediaLibraryPage.uploadAnyImageFromWeb(randomPubId, null)
                 .rightClickImageByImageNameAndClickOnMenuItem(randomPubId, ImageTilePage.ImageTileRightClickOptions.MANAGE);
-        takeScreenshot(driver);
+        takeScreenshot(driver, "After clicking menu item MANAGE");
 
         manageImagePage = new ManageImagePage(driver);
         Allure.step("Verify that correct pulicId is presented");
-        takeScreenshot(driver);
+        takeScreenshot(driver, "Public Id");
         Assert.assertEquals(manageImagePage.getItemTitle(), randomPubId);
         Allure.step("Expected and actual PublicId are equal");
     }

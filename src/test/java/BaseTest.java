@@ -1,8 +1,7 @@
 import Utils.BrowserTypeEnum;
 import Utils.GlobalProperties;
 import Utils.WebDriverBase;
-import io.qameta.allure.Attachment;
-import org.apache.commons.io.FileUtils;
+import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -12,10 +11,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.ByteArrayInputStream;
 import java.util.Properties;
 
 public class BaseTest {
@@ -45,12 +41,7 @@ public class BaseTest {
         this.driver.quit();
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public void takeScreenshot(WebDriver driver) throws IOException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
-        Date date = new Date();
-        String fileName = sdf.format(date);
-        File SrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(SrcFile, new File(System.getProperty("user.dir") + "//allure-results//" + fileName + ".png"));
+    public void takeScreenshot(WebDriver driver, String description) {
+        Allure.addAttachment(description, new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
     }
 }

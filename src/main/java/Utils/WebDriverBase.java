@@ -44,5 +44,4 @@ public class WebDriverBase {
     private String getOsName() {
         return System.getProperty("os.name").toLowerCase();
     }
-
 }
