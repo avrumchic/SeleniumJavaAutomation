@@ -16,7 +16,12 @@ public class WebDriverBase {
             return this.driver;
         } else {
             if (browserType.equals(BrowserTypeEnum.CHROME)) {
-                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+                if (getOsName().contains("mac")) {
+                    System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+                } else if (getOsName().contains("win")) {
+                    String resourcePath = this.getClass().getClassLoader().getResource("chromedriver.exe").getPath();
+                    System.setProperty("webdriver.chrome.driver", resourcePath);
+                }
                 this.driver = new ChromeDriver();
             } else if (browserType.equals(BrowserTypeEnum.FIREFOX)) {
                 this.driver = new FirefoxDriver();
@@ -25,11 +30,16 @@ public class WebDriverBase {
             }
         }
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         return this.driver;
     }
 
     public void quit() {
         this.driver.quit();
+    }
+
+    private String getOsName() {
+        return System.getProperty("os.name").toLowerCase();
     }
 
 }

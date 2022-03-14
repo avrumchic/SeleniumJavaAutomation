@@ -25,6 +25,9 @@ public class UploadWindowPage extends BasePage {
     public UploadWindowPage(WebDriver driver) {
         super(driver);
 
+        //Needed a way to wait for the Upload window to load
+        //Since need to swith, i can't wait for the element in the new window, need to wait that an old element will
+        //change its attribute.
         wait.until(ExpectedConditions.attributeContains(By.cssSelector("[class=\"bg-color\"]"), "style", "overflow: hidden;"));
         driver.switchTo().frame(1);
 

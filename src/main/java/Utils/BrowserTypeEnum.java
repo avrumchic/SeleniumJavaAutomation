@@ -10,12 +10,6 @@ public enum BrowserTypeEnum {
     SAFARI,
     OPERA;
 
-//    private String type;
-//
-//    BrowserType(String type) {
-//        this.type = type;
-//    }
-
     public static BrowserTypeEnum fromString(String text) {
         try {
             return Arrays.stream(values())

@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+//Base page for all common functionality of all PageObjects
 public class BasePage {
 
     Logger logger = Logger.getLogger(BasePage.class.getName());

@@ -18,7 +18,7 @@ public class BaseTest {
 
     @BeforeSuite
     public void initAll() {
-        properties = new GlobalProperties().getProperties();
+        this.properties = new GlobalProperties().getProperties();
     }
 
     @BeforeMethod

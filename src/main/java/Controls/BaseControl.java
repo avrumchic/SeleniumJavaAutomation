@@ -8,7 +8,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class BaseControl {
+    Logger logger = Logger.getLogger(BaseControl.class.getName());
 
     private final int TimeOutIsSeconds = 10;
     protected WebDriver driver;
@@ -42,6 +46,7 @@ public class BaseControl {
     }
 
     public WebElement click() {
+        logger.log(Level.INFO, "Clicking element");
         try {
             element.click();
         } catch (ElementNotInteractableException e) {
@@ -50,9 +55,8 @@ public class BaseControl {
         return element;
     }
 
-    public WebElement rightClick() {
-        actions.doubleClick(element).perform();
-        return element;
+    public void rightClick() {
+        actions.contextClick(element).build().perform();
     }
 
     public String getText() {
